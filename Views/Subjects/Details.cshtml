@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Labb2.Models.Subject>
+
+@{
+    ViewData["Title"] = "Change Teacher For Student";
+}
+
+
+
+
+<h1>Ändra lärare för en elev i kursen Programmering 1</h1>
+
+<h3>Elever i kursen Programmering 1</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Elevens namn</th>
+            <th>Lärarens namn</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var enrollment in ViewBag.Enrollments)
+        {
+            <tr>
+                <td>@enrollment.Student.StudentName</td>
+                <td>@enrollment.Subject.Teacher.TeacherName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-controller="Subjects" asp-action="ChangeTeacher" method="post">
+    <div>
+        <label for="studentId">Välj elev som ska byta klass till Tobias:</label>
+        <select id="studentId" name="studentId" asp-items="ViewBag.StudentList"></select>
+    </div>
+    <button type="submit">Ändra lärare till Tobias</button>
+</form>

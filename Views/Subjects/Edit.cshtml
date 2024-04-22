@@ -1,0 +1,30 @@
+﻿@model Labb2.Models.Subject
+
+@{
+    ViewData["Title"] = "Edit Subject";
+}
+
+<h1>Ändra Programmering 2 till OOP</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Kursens namn</th>
+            <th>Lärarens namn</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+            <td>@Model.SubjectName</td>
+            <td>@Model.Teacher.TeacherName</td>
+            </tr>        
+    </tbody>
+</table>
+
+
+    <div>
+        <form asp-controller="Subjects" asp-action="ChangeSubjectName" method="post">
+            <input type="hidden" name="id" value="@Model.SubjectId" />
+            <button type="submit" name="newSubjectName" value="OOP">Ändra namn på kurs till OOP</button>
+        </form>
+    </div>

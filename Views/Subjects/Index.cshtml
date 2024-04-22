@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Labb2.Models.Subject>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Alla lärare i Programmering 1</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Lärarens namn
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            if(item.SubjectName == "Programmering 1")
+            {
+            <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Teacher.TeacherName)
+            </td>
+            </tr>
+            }       
+}
+    </tbody>
+</table>

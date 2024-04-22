@@ -1,0 +1,30 @@
+﻿@model List<Labb2.Models.Enrollment>
+
+@{
+    ViewData["Title"] = "Overview";
+}
+
+<h1>Elever och Lärare</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Elevens namn</th>
+            <th>Lärarens namn</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model.GroupBy(e => e.Student?.StudentName))
+        {
+            <tr>
+                <td>@student.Key</td>
+                <td>
+                    @foreach (var teacher in student)
+                    {
+                        @teacher.Subject?.Teacher?.TeacherName<br/>  
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
