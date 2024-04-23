@@ -19,7 +19,7 @@ namespace Labb2.Controllers
             _context = context;
         }
 
-        // GET: Enrollments
+        // GET: All students in Programming
         public async Task<IActionResult> StudentsInProgramming()
         {
             var labb2DbContext = _context.Enrollments
@@ -31,7 +31,7 @@ namespace Labb2.Controllers
             return View(await labb2DbContext.ToListAsync());
         }
 
-        // GET: Enrollments
+        // GET: All students with their teachers
         public async Task<IActionResult> AllStudentsWithTeachers()
         {
             var labb2DbContext = _context.Enrollments
@@ -40,6 +40,12 @@ namespace Labb2.Controllers
                 .ThenInclude(t => t.Teacher);
             return View(await labb2DbContext.ToListAsync());
         }
+
+
+
+        // --------------------------------------------------------------------------------------
+
+
 
         // GET: Enrollments/Details/5
         public async Task<IActionResult> Details(int? id)

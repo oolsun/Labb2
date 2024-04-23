@@ -19,7 +19,7 @@ namespace Labb2.Controllers
             _context = context;
         }
 
-        // GET: Subjects
+
         public async Task<IActionResult> GetTeacherInProgramming()
         {
             var labb2DbContext = _context.Subjects
@@ -89,31 +89,6 @@ namespace Labb2.Controllers
         }
 
 
-        // GET: Subjects/Create
-        public IActionResult Create()
-        {
-            ViewData["FK_TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "TeacherId");
-            return View();
-        }
-
-        // POST: Subjects/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SubjectId,SubjectName,FK_TeacherId")] Subject subject)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(subject);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["FK_TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "TeacherId", subject.FK_TeacherId);
-            return View(subject);
-        }
-
-        // GET: Subjects/Edit/5
         public async Task<IActionResult> ChangeProgrammingToOop()
         {
             var subject = await _context.Subjects
@@ -143,8 +118,38 @@ namespace Labb2.Controllers
 
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("Edit");
+            return RedirectToAction("ChangeProgrammingToOop");
         }
+
+
+        // ------------------------------------------------------------------
+
+
+        // GET: Subjects/Create
+        public IActionResult Create()
+        {
+            ViewData["FK_TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "TeacherId");
+            return View();
+        }
+
+        // POST: Subjects/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("SubjectId,SubjectName,FK_TeacherId")] Subject subject)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(subject);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["FK_TeacherId"] = new SelectList(_context.Teachers, "TeacherId", "TeacherId", subject.FK_TeacherId);
+            return View(subject);
+        }
+
+        
 
         // GET: Subjects/Delete/5
         public async Task<IActionResult> Delete(int? id)
