@@ -11,7 +11,7 @@ namespace Labb2.Data
         {
 
         }
-        public DbSet<Teacher> Teachers{ get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Class> Class { get; set; }
         public DbSet<Subject> Subjects { get; set; }

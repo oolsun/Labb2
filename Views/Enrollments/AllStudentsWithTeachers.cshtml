@@ -1,7 +1,7 @@
 ﻿@model List<Labb2.Models.Enrollment>
 
 @{
-    ViewData["Title"] = "Overview";
+    ViewData["Title"] = "Elever med alla sina lärare";
 }
 
 <h1>Elever och Lärare</h1>
@@ -17,7 +17,9 @@
         @foreach (var student in Model.GroupBy(e => e.Student?.StudentName))
         {
             <tr>
-                <td>@student.Key</td>
+                <td>
+                    @student.Key
+                </td>
                 <td>
                     @foreach (var teacher in student)
                     {

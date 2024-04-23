@@ -20,15 +20,16 @@ namespace Labb2.Controllers
         }
 
         // GET: Subjects
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetTeacherInProgramming()
         {
             var labb2DbContext = _context.Subjects
-                                        .Include(s => s.Teacher);
+                                        .Include(s => s.Teacher)
+                                        .Where(e => e.SubjectName == "Programmering 1");
 
             return View(await labb2DbContext.ToListAsync());
         }
 
-        public IActionResult Details()
+        public IActionResult ChangeTeacherForAStudent()
         {
             var enrollments = _context.Enrollments
                                       .Include(e => e.Student)
@@ -84,7 +85,7 @@ namespace Labb2.Controllers
             }
             _context.SaveChanges();
 
-            return RedirectToAction("Details", "Subjects");
+            return RedirectToAction("ChangeTeacherForAStudent", "Subjects");
         }
 
 
@@ -113,7 +114,7 @@ namespace Labb2.Controllers
         }
 
         // GET: Subjects/Edit/5
-        public async Task<IActionResult> Edit()
+        public async Task<IActionResult> ChangeProgrammingToOop()
         {
             var subject = await _context.Subjects
                 .Include(s => s.Teacher)

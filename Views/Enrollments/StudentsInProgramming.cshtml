@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Labb2.Models.Enrollment>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Elever i Programmering 1";
 }
 
 <h1>Lista över elever i Programmering 1 och dess lärare</h1>
@@ -24,8 +24,6 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-    if(item.Subject.SubjectName == "Programmering 1")
-    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Student.StudentName)
@@ -37,7 +35,6 @@
                 @Html.DisplayFor(modelItem => item.Subject.Teacher.TeacherName)                
             </td>
         </tr>
-    }
 }
     </tbody>
 </table>

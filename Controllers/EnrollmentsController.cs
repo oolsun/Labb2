@@ -20,17 +20,19 @@ namespace Labb2.Controllers
         }
 
         // GET: Enrollments
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> StudentsInProgramming()
         {
             var labb2DbContext = _context.Enrollments
                 .Include(e => e.Student)
                 .Include(e => e.Subject)
-                .ThenInclude(t => t.Teacher);
+                .ThenInclude(t => t.Teacher)
+                .Where(s => s.Subject.SubjectName == "Programmering 1");
+
             return View(await labb2DbContext.ToListAsync());
         }
 
         // GET: Enrollments
-        public async Task<IActionResult> Overview()
+        public async Task<IActionResult> AllStudentsWithTeachers()
         {
             var labb2DbContext = _context.Enrollments
                 .Include(e => e.Student)
